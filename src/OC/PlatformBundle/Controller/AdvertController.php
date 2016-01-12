@@ -39,6 +39,24 @@ class AdvertController extends Controller
             'id'      => 3,
             'author'  => 'Mathieu',
             'content' => 'Nous proposons un poste pour webdesigner. Blabla…',
+            'date'    => new \Datetime()),
+          array(
+            'title'   => 'Recherche développpeur Symfony2',
+            'id'      => 1,
+            'author'  => 'Alexandre',
+            'content' => 'Nous recherchons un développeur Symfony2 débutant sur Lyon. Blabla…',
+            'date'    => new \Datetime()),
+          array(
+            'title'   => 'Mission de webmaster',
+            'id'      => 2,
+            'author'  => 'Hugo',
+            'content' => 'Nous recherchons un webmaster capable de maintenir notre site internet. Blabla…',
+            'date'    => new \Datetime()),
+          array(
+            'title'   => 'Offre de stage webdesigner',
+            'id'      => 3,
+            'author'  => 'Mathieu',
+            'content' => 'Nous proposons un poste pour webdesigner. Blabla…',
             'date'    => new \Datetime())
         );
 
@@ -73,7 +91,7 @@ class AdvertController extends Controller
             // Ici, on s'occupera de la création et de la gestion du formulaire
 
             // On récupère le service
-            $antispam = $this->container->get('oc_platform.antispam');
+            $antispam = $this->container->get('oc_core.antispam');
 
             // Je pars du principe que $text contient le texte d'un message quelconque
             $text = '...';
@@ -129,11 +147,13 @@ class AdvertController extends Controller
     {
         // On fixe en dur une liste ici, bien entendu par la suite
         // on la récupérera depuis la BDD !
-        $listAdverts = array(
-          array('id' => 2, 'title' => 'Recherche développeur Symfony2'),
-          array('id' => 5, 'title' => 'Mission de webmaster'),
-          array('id' => 9, 'title' => 'Offre de stage webdesigner')
-        );
+        /*$listAdverts = array(
+              array('id' => 2, 'title' => 'Recherche développeur Symfony2'),
+              array('id' => 5, 'title' => 'Mission de webmaster'),
+              array('id' => 9, 'title' => 'Offre de stage webdesigner')
+          );
+          */
+        $listAdverts = $this->container->get('oc_platform.advert')->lastAdvert();
 
         return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
           // Tout l'intérêt est ici : le contrôleur passe

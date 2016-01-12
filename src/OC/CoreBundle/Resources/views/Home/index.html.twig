@@ -1,0 +1,40 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "OCCoreBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>Page d'acceuil de notre site</h2>
+
+    <p>
+        {# On affiche tous les messages flash dont le nom est « info » #}
+        {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info" role="alert">
+            <p>Message flash : {{ message }}</p>
+        </div>
+        {% endfor %}
+    </p>
+
+    <p>
+        Voici les 3 dernières annonces publié sur le site :
+    </p>
+
+  <ul>
+    {% for advert in lastAdverts %}
+      <li>
+        <a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
+          {{ advert.title }}
+        </a>
+        par {{ advert.author }},
+        le {{ advert.date|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) d'annonces</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{{ path('oc_platform_home') }}">
+    En voir plus ..
+  </a>
+
+{% endblock %}

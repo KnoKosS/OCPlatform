@@ -2,6 +2,6 @@ services:
 #    oc_platform.example:
 #        class: OC\PlatformBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
-    oc_platform.antispam:
-        class: OC\PlatformBundle\Antispam\OCAntispam
-        arguments: [50]
+    oc_platform.advert:
+        class: OC\PlatformBundle\PlatformServices\OCAdvert
+        arguments: [3]

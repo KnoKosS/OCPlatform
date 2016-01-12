@@ -1,0 +1,7 @@
+services:
+#    oc_core.example:
+#        class: OC\CoreBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    oc_core.antispam:
+        class: OC\CoreBundle\CoreServices\OCAntispam
+        arguments: [50]
